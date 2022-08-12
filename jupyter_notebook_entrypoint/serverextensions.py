@@ -1,4 +1,4 @@
-import warnings
+# from .utils import notebook_not_found
 notebook_not_found = """It looks the Jupyter Notebook is not installed.
 
 Try (re)installing it using using `pip`:
@@ -9,12 +9,10 @@ or conda/mamba:
 
     conda install notebook
 """
-
-
 try:
-    from notebook.notebookapp import main
+    from notebook.serverextensions import main
 except ModuleNotFoundError:
     try:
-        from nbclassic.notebookapp import main
+        from nbclassic.serverextensions import main
     except ModuleNotFoundError:
         raise ModuleNotFoundError(notebook_not_found)

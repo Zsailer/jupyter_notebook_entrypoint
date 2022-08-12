@@ -36,7 +36,10 @@ Tracker = "https://github.com/jupyter/jupyter_notebook_entrypoint/issues"
 test = []
 
 [project.scripts]
-jupyter-notebook = "jupyter_notebook_entrypoint.main:main"
+jupyter-notebook = "jupyter_notebook_entrypoint.notebook:main"
+jupyter-nbextension = "jupyter_notebook_entrypoint.nbextensions:main"
+jupyter-serverextension = "jupyter_notebook_entrypoint.serverextensions:main"
+jupyter-bundlerextension = "jupyter_notebook_entrypoint.bunderextensions:main"
 
 [tool.jupyter-releaser.options]
 post-version-spec = "dev"
