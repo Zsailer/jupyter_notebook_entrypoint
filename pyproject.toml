@@ -1,0 +1,65 @@
+[build-system]
+requires = ["hatchling >=1.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "jupyter_notebook_entrypoint"
+version = "0.1.0"
+readme = "README.md"
+license = { file = "COPYING.md" }
+description = "The Jupyter Notebook Entrypoint"
+authors = [{name = "Jupyter Development Team", email = "jupyter@googlegroups.com"}]
+keywords = ["ipython", "jupyter"]
+classifiers = [
+    "Framework :: Jupyter",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+]
+requires-python = ">=3.7"
+dependencies = [
+    "jupyter_core"
+]
+
+[project.urls]
+Homepage = "https://github.com/jupyter/jupyter_notebook_entrypoint"
+Documentation = "https://github.com/jupyter/jupyter_notebook_entrypoint"
+Source = "https://github.com/jupyter/jupyter_notebook_entrypoint"
+Tracker = "https://github.com/jupyter/jupyter_notebook_entrypoint/issues"
+
+[project.optional-dependencies]
+test = []
+
+[project.scripts]
+jupyter-notebook = "jupyter_notebook_entrypoint.main:main"
+
+[tool.jupyter-releaser.options]
+post-version-spec = "dev"
+
+[tool.tbump.version]
+current = "0.1.0"
+regex = '''
+  (?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)
+  ((?P<channel>a|b|rc|.dev)(?P<release>\d+))?
+'''
+
+[tool.tbump.git]
+message_template = "Bump to {new_version}"
+tag_template = "v{new_version}"
+
+[[tool.tbump.file]]
+src = "jupyter_notebook_entrypoint/_version.py"
+version_template = '({major}, {minor}, {patch}, "{channel}", "{release}")'
+
+[[tool.tbump.file]]
+src = "pyproject.toml"
+version_template = "version = \"{major}.{minor}.{patch}{channel}{release}\""
+
+[[tool.tbump.field]]
+name = "release"
+default = ""
